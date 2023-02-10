@@ -35,6 +35,22 @@ public class Profile implements Comparable<Profile> {
         dob = newDob;
     }
 
+    @Override
+    public String toString(){
+        // Return whatever string needed for this method.
+        return "";
+    }
+
+    @Override
+    public boolean equals(Object obj){
+
+    }
+
+    @Override
+    public boolean compareTo(Profile profile){
+
+    }
+
 }
 
 
