@@ -1,3 +1,9 @@
+/**
+ * This is the roster class where the students are stored.
+ * Helper methods are made to sort the students in different ways.
+ * @author Jaison Prajapati
+ */
+
 public class Roster {
     private Student[] roster;
     private int size;
@@ -38,13 +44,19 @@ public class Roster {
         }
         return false;
     }
-    public void print (){ //print roster sorted by profiles
-
+    public void print(){ //print roster sorted by profiles
+        if(roster == null){
+            System.out.println("Student roster is empty!");
+        }
     }
     public void printBySchoolMajor(){ //print roster sorted by school major
-
+        if(roster == null){
+            System.out.println("Student roster is empty!");
+        }
     }
     public void printByStanding(){ //print roster sorted by standing
-
+        if(roster == null){
+            System.out.println("Student roster is empty!");
+        }
     }
 }

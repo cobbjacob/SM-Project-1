@@ -1,5 +1,11 @@
+/**
+ * This is the roster manager where the user input is read and the commands are executed.
+ * @author Jaison Prajapati
+ */
+
 import java.util.Scanner;
 public class RosterManager {
+    Roster studentRoster = new Roster();
     public void run(){
         System.out.println("Roster Manager running...");
         Scanner scan = new Scanner(System.in);
@@ -31,7 +37,15 @@ public class RosterManager {
         }
     }
     public void addStudent(String[] commands){
-
+        Profile newProfile = new Profile();
+        newProfile.setFname(commands[1]);
+        newProfile.setLname(commands[2]);
+        Date studentDob = new Date(commands[3]);
+        if(studentDob.isValid() == true){
+            newProfile.setDob(studentDob);
+        }else{
+            System.out.println("DOB invalid: " + commands[3] + " not a valid calendar date!");
+        }
     }
 
     public void removeStudent(String[] commands){
@@ -39,15 +53,15 @@ public class RosterManager {
     }
 
     public void displayRoster(){
-
+        studentRoster.print();
     }
 
     public void displayRosterStanding(){
-
+        studentRoster.printByStanding();
     }
 
     public void displayRosterSchool(){
-
+        studentRoster.printBySchoolMajor();
     }
 
     public void listStudentsSchool(String[] commands){
