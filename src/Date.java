@@ -13,7 +13,7 @@ public class Date implements Comparable<Date> {
     public Date() {
         Calendar todayDate = Calendar.getInstance();
         day = todayDate.get(Calendar.DAY_OF_MONTH);
-        month = todayDate.get(Calendar.MONTH);
+        month = todayDate.get(Calendar.MONTH) + 1;
         year = todayDate.get(Calendar.YEAR);
     } //create an object with today’s date (see Calendar class)
 
@@ -48,27 +48,17 @@ public class Date implements Comparable<Date> {
         return true;
     } //check if a date is a valid calendar date
 
-    public boolean isValid(int month, int day, int year) {
-        if((month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) && (day < 1 || day > 31)){
+    public boolean age(Date student) {
+        Date today = new Date();
+        if(today.getYear() - student.getYear() < 16){
             return false;
-        }
-        if((month == 4|| month == 6 || month == 9 || month == 11) && (day < 1 || day > 30)){
+        }else if(today.getYear() - student.getYear() == 16 && today.getMonth() - student.getMonth() < 0){
             return false;
-        }
-        if(month < 1 || month > 12){
+        }else if(today.getYear() - student.getYear() == 16 && today.getDay() - student.getDay() < 0){
             return false;
+        }else{
+            return true;
         }
-        if(leapYear() == true){
-            if(month == 2 && (day < 1 || day > 29)) {
-                return false;
-            }
-        }
-        if(leapYear() == false){
-            if(month == 2 && (day < 1 || day > 28)) {
-                return false;
-            }
-        }
-        return true;
     }
 
     public boolean leapYear(){

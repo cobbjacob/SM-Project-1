@@ -41,11 +41,35 @@ public class RosterManager {
         newProfile.setFname(commands[1]);
         newProfile.setLname(commands[2]);
         Date studentDob = new Date(commands[3]);
-        if(studentDob.isValid() == true){
-            newProfile.setDob(studentDob);
-        }else{
+        if(studentDob.isValid() == false){
             System.out.println("DOB invalid: " + commands[3] + " not a valid calendar date!");
+            return;
+        }else if(studentDob.age(studentDob) == false){
+            System.out.println("DOB invalid: " + commands[3] + " younger than 16 years old!");
+            return;
+        }else{
+            newProfile.setDob(studentDob);
         }
+
+        int creditsCompleted = Integer.parseInt(commands[5]);
+        if(commands[4].equals("CS") == true){
+            Student newStudent = new Student(newProfile, Student.Major.CS, creditsCompleted);
+            studentRoster.add(newStudent);
+        }else if(commands[4].equals("MATH") == true){
+            Student newStudent = new Student(newProfile, Student.Major.MATH, creditsCompleted);
+            studentRoster.add(newStudent);
+        }else if(commands[4].equals("EE") == true){
+            Student newStudent = new Student(newProfile, Student.Major.EE, creditsCompleted);
+            studentRoster.add(newStudent);
+        }else if(commands[4].equals("ITI") == true){
+            Student newStudent = new Student(newProfile, Student.Major.ITI, creditsCompleted);
+            studentRoster.add(newStudent);
+        }else if(commands[4].equals("BAIT") == true){
+            Student newStudent = new Student(newProfile, Student.Major.BAIT, creditsCompleted);
+            studentRoster.add(newStudent);
+        }
+
+        System.out.println(commands[1] + " " + commands[2] + " " + commands[3] + " added to the roster.");
     }
 
     public void removeStudent(String[] commands){

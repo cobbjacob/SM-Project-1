@@ -15,7 +15,18 @@ public class Student implements Comparable<Student> {
     }
 
     public enum Major{
+        CS ("01:198", "SAS"),
+        MATH ("01:640", "SAS"),
+        EE ("14:332", "SOE"),
+        ITI ("04:547", "SC&I"),
+        BAIT ("33:136", "RBS");
+        String code;
+        String school;
+        Major(String c, String s){
+            code = c;
+            school = s;
 
+        }
     }
 
     //getters

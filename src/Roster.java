@@ -16,9 +16,21 @@ public class Roster {
         return -1;
     }
     private void grow(){ //increase the array capacity by 4
-
+        if(roster == null){
+            Student[] newRoster = new Student[4];
+            roster = newRoster;
+        }else{
+            Student[] newRoster = new Student[roster.length + 4];
+            for(int i = 0; i < roster.length; i++){
+                newRoster[i] = roster [i];
+            }
+            roster = newRoster;
+        }
     }
     public boolean add(Student student){ //add student to end of array
+        if(roster == null){
+            grow();
+        }
         for(int i = 0; i < roster.length; i++){
             if(roster[i] == null){
                 roster[i] = student;
