@@ -31,6 +31,14 @@ public class Student implements Comparable<Student> {
 
     //getters
     /**
+     * Getter for profile
+     * @return the student's profile
+     */
+    public Profile getProfile(){
+        return profile;
+    }
+
+    /**
      * Getter for major
      * @return the student's major
      */
@@ -47,6 +55,14 @@ public class Student implements Comparable<Student> {
     }
 
     //setters
+    /**
+     * Setter for new profile
+     * @param newProfile which is set
+     */
+    public void setProfile(Profile newProfile){
+        profile = newProfile;
+    }
+
     /**
      * Setter for new major
      * @param newMajor which is set

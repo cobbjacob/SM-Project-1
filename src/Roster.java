@@ -49,9 +49,20 @@ public class Roster {
         return false;
     }
     public boolean contains(Student student){ //if the student is in roster
+        if(roster == null){
+            return false;
+        }
         for(int i = 0; i < roster.length; i++){
-            if(roster[i] == student){
-                return true;
+            if(roster[i] == null){
+                return false;
+            }else{
+                if(roster[i].getProfile().getFname().equalsIgnoreCase(student.getProfile().getFname()) == true &&
+                        roster[i].getProfile().getLname().equalsIgnoreCase(student.getProfile().getLname()) == true &&
+                        roster[i].getProfile().getDob().getDay() == student.getProfile().getDob().getDay() &&
+                        roster[i].getProfile().getDob().getMonth() == student.getProfile().getDob().getMonth() &&
+                        roster[i].getProfile().getDob().getYear() == student.getProfile().getDob().getYear()){
+                    return true;
+                }
             }
         }
         return false;

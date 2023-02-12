@@ -51,25 +51,65 @@ public class RosterManager {
             newProfile.setDob(studentDob);
         }
 
-        int creditsCompleted = Integer.parseInt(commands[5]);
-        if(commands[4].equals("CS") == true){
-            Student newStudent = new Student(newProfile, Student.Major.CS, creditsCompleted);
-            studentRoster.add(newStudent);
-        }else if(commands[4].equals("MATH") == true){
-            Student newStudent = new Student(newProfile, Student.Major.MATH, creditsCompleted);
-            studentRoster.add(newStudent);
-        }else if(commands[4].equals("EE") == true){
-            Student newStudent = new Student(newProfile, Student.Major.EE, creditsCompleted);
-            studentRoster.add(newStudent);
-        }else if(commands[4].equals("ITI") == true){
-            Student newStudent = new Student(newProfile, Student.Major.ITI, creditsCompleted);
-            studentRoster.add(newStudent);
-        }else if(commands[4].equals("BAIT") == true){
-            Student newStudent = new Student(newProfile, Student.Major.BAIT, creditsCompleted);
-            studentRoster.add(newStudent);
+        boolean validCreditsCompleted = true;
+        try{
+            Integer.parseInt(commands[5]);
+        }catch(NumberFormatException e){
+            validCreditsCompleted = false;
+            System.out.println("Credits completed invalid: not an integer!");
         }
 
-        System.out.println(commands[1] + " " + commands[2] + " " + commands[3] + " added to the roster.");
+        if(validCreditsCompleted == true){
+            int creditsCompleted = Integer.parseInt(commands[5]);
+            if(creditsCompleted < 0){
+                System.out.println("Credits completed invalid: cannot be negative!");
+                return;
+            }else{
+                if(commands[4].equalsIgnoreCase("CS") == true){
+                    Student newStudent = new Student(newProfile, Student.Major.CS, creditsCompleted);
+                    if(studentRoster.contains(newStudent) == true){
+                        System.out.println(commands[1] + " " + commands[2] + " " + commands[3] + " is already in the roster.");
+                        return;
+                    }
+                    studentRoster.add(newStudent);
+                    System.out.println(commands[1] + " " + commands[2] + " " + commands[3] + " added to the roster.");
+                }else if(commands[4].equalsIgnoreCase("MATH") == true){
+                    Student newStudent = new Student(newProfile, Student.Major.MATH, creditsCompleted);
+                    if(studentRoster.contains(newStudent) == true){
+                        System.out.println(commands[1] + " " + commands[2] + " " + commands[3] + " is already in the roster.");
+                        return;
+                    }
+                    studentRoster.add(newStudent);
+                    System.out.println(commands[1] + " " + commands[2] + " " + commands[3] + " added to the roster.");
+                }else if(commands[4].equalsIgnoreCase("EE") == true){
+                    Student newStudent = new Student(newProfile, Student.Major.EE, creditsCompleted);
+                    if(studentRoster.contains(newStudent) == true){
+                        System.out.println(commands[1] + " " + commands[2] + " " + commands[3] + " is already in the roster.");
+                        return;
+                    }
+                    studentRoster.add(newStudent);
+                    System.out.println(commands[1] + " " + commands[2] + " " + commands[3] + " added to the roster.");
+                }else if(commands[4].equalsIgnoreCase("ITI") == true){
+                    Student newStudent = new Student(newProfile, Student.Major.ITI, creditsCompleted);
+                    if(studentRoster.contains(newStudent) == true){
+                        System.out.println(commands[1] + " " + commands[2] + " " + commands[3] + " is already in the roster.");
+                        return;
+                    }
+                    studentRoster.add(newStudent);
+                    System.out.println(commands[1] + " " + commands[2] + " " + commands[3] + " added to the roster.");
+                }else if(commands[4].equalsIgnoreCase("BAIT") == true){
+                    Student newStudent = new Student(newProfile, Student.Major.BAIT, creditsCompleted);
+                    if(studentRoster.contains(newStudent) == true){
+                        System.out.println(commands[1] + " " + commands[2] + " " + commands[3] + " is already in the roster.");
+                        return;
+                    }
+                    studentRoster.add(newStudent);
+                    System.out.println(commands[1] + " " + commands[2] + " " + commands[3] + " added to the roster.");
+                }else{
+                    System.out.println("Major code invalid: " + commands[4]);
+                }
+            }
+        }
     }
 
     public void removeStudent(String[] commands){
