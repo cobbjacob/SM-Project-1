@@ -8,12 +8,29 @@ public class Student implements Comparable<Student> {
     private Major major; //Major is an enum type
     private int creditCompleted;
 
+    /**
+     * This is the method which makes student objects with a passed in profile, major, and credits completed.
+     * @param profile This is the profile which is passed in.
+     * @param major This is the major which is passed in.
+     * @param creditCompleted This is the number of credits completed which is passed in.
+     */
     public Student(Profile profile, Major major, int creditCompleted){
         this.profile = profile;
         this.major = major;
         this.creditCompleted = creditCompleted;
     }
 
+    /**
+     * This is the method to make a student object with only a profile.
+     * @param profile This is the passed in profile.
+     */
+    public Student(Profile profile){
+        this.profile = profile;
+    }
+
+    /**
+     * This is the enum method for the majors and their class code and school.
+     */
     public enum Major{
         CS ("01:198", "SAS"),
         MATH ("01:640", "SAS"),
@@ -26,6 +43,22 @@ public class Student implements Comparable<Student> {
             code = c;
             school = s;
 
+        }
+    }
+
+    /**
+     * This is a helper method which tells you which year a student is.
+     * @return Returns a string of the type of student they are.
+     */
+    public String standing(){
+        if(creditCompleted < 30){
+            return "Freshman";
+        }else if(creditCompleted >= 30 && creditCompleted < 60){
+            return "Sophomore";
+        }else if(creditCompleted >= 60 && creditCompleted < 90 ){
+            return "Junior";
+        }else{
+            return "Senior";
         }
     }
 
@@ -79,20 +112,44 @@ public class Student implements Comparable<Student> {
         creditCompleted = newCreditCompleted;
     }
 
+    /**
+     * This overrides the toString method for the Student object.
+     * @return This returns a string value of the student object.
+     */
     @Override //NEED TO FINISH THIS
     public String toString(){
         // Return whatever string needed for this method.
         return "";
     }
 
-    @Override //NEED TO FINISH THIS
-    public boolean equals(Object obj){
+    /**
+     * This overrides the equals method for the student object.
+     * @param oStudent This is the student which is passed in.
+     * @return Returns true if they are the same and false if they are different.
+     */
+    @Override
+    public boolean equals(Object oStudent){
+        if (oStudent instanceof Student student){
+            boolean oProfile = this.profile.equals(student.profile);
+            boolean oMajor = this.major.equals(student.major);
+            boolean oCredits = this.creditCompleted == student.creditCompleted;
+            return oProfile && oMajor && oCredits;
+        }
         return false;
     }
 
-    @Override //NEED TO FINISH THIS
+    /**
+     * This overrides the compareTo method for the student object.
+     * @param student the object to be compared.
+     * @return Returns 0 if they are the same and -1 if they are different.
+     */
+    @Override
     public int compareTo(Student student){
-        return -1;
+        if(this.profile.equals(student.getProfile()) == true){
+            return 0;
+        }else{
+            return -1;
+        }
     }
 
 }

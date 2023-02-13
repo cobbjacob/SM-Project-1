@@ -8,10 +8,19 @@ public class Profile implements Comparable<Profile> {
     private String fname;
     private Date dob; //use the Date class described in (f)
 
+    /**
+     * This makes a profile object.
+     */
     public Profile(){
 
     }
 
+    /**
+     * This makes a profile object with a last name, first name, and date of birth.
+     * @param lname This is the user input last name.
+     * @param fname This is the user input first name.
+     * @param dob This is the user input date of birht.
+     */
     public Profile(String lname, String fname, Date dob){
         this.lname = lname;
         this.fname = fname;
@@ -68,20 +77,56 @@ public class Profile implements Comparable<Profile> {
         dob = newDob;
     }
 
+    /**
+     * This overrides the toString method for the profile object.
+     * @return Returns the string format of the profile object.
+     */
     @Override //NEED TO FINISH THIS
     public String toString(){
         // Return whatever string needed for this method.
         return "";
     }
 
-    @Override // NEED TO FINISH THIS
-    public boolean equals(Object obj){
-        return true;
+    /**
+     * This overrides the equals method for the profile object.
+     * @param oProfile This is the profile which is being equals to.
+     * @return Returns true if the profile is the same and false if the profiles are different.
+     */
+    @Override
+    public boolean equals(Object oProfile){
+        boolean firstName = false;
+        boolean lastName = false;
+        boolean dateOfBirth = false;
+        if (oProfile instanceof Profile profile) {
+            firstName = this.fname.equalsIgnoreCase(profile.fname);
+            lastName = this.lname.equalsIgnoreCase(profile.lname);
+            dateOfBirth = this.getDob().getDay() == profile.getDob().getDay() &&
+                    this.getDob().getMonth() == profile.getDob().getMonth() &&
+                    this.getDob().getYear() == profile.getDob().getYear();
+        }
+
+        if(firstName == true && lastName == true && dateOfBirth == true){
+            return true;
+        }else{
+            return false;
+        }
     }
 
-    @Override //NEED TO FINISH THIS
+    /**
+     * This overrides the compareTo method for the profile object.
+     * @param profile the object to be compared.
+     * @return Returns true if the profiles are the same and false if they are different.
+     */
+    @Override
     public int compareTo(Profile profile){
-        return -1;
+        if(this.fname.equals(profile.getFname()) == true && this.lname.equals(profile.getLname()) == true &&
+                this.dob.getDay() == profile.getDob().getDay() &&
+                this.dob.getMonth() == profile.getDob().getMonth() &&
+                this.dob.getYear() == profile.getDob().getYear()){
+            return 0;
+        }else{
+            return -1;
+        }
     }
 
 }

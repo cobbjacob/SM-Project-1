@@ -10,6 +10,9 @@ public class Date implements Comparable<Date> {
     private int month;
     private int day;
 
+    /**
+     * This is the date method which sets today's date.
+     */
     public Date() {
         Calendar todayDate = Calendar.getInstance();
         day = todayDate.get(Calendar.DAY_OF_MONTH);
@@ -17,6 +20,10 @@ public class Date implements Comparable<Date> {
         year = todayDate.get(Calendar.YEAR);
     } //create an object with today’s date (see Calendar class)
 
+    /**
+     * This is to make a date object.
+     * @param date The user string is passed in to make the date object.
+     */
     public Date(String date) {
         String[] inputDate = date.split("/");
         month = Integer.parseInt(inputDate[0]);
@@ -25,6 +32,10 @@ public class Date implements Comparable<Date> {
 
     } //take “mm/dd/yyyy” and create a Date object
 
+    /**
+     * This method checks if the date is valid.
+     * @return Returns a true value if the date is valid and false if the date is invalid.
+     */
     public boolean isValid() {
         if((month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) && (day < 1 || day > 31)){
             return false;
@@ -48,6 +59,11 @@ public class Date implements Comparable<Date> {
         return true;
     } //check if a date is a valid calendar date
 
+    /**
+     * This method checks the age of a student and makes sure they are older than 16.
+     * @param student This is the passed in date of birth of a student.
+     * @return Returns true if the student is 16 or older and false if the student is not 16.
+     */
     public boolean age(Date student) {
         Date today = new Date();
         if(today.getYear() - student.getYear() < 16){
@@ -61,6 +77,10 @@ public class Date implements Comparable<Date> {
         }
     }
 
+    /**
+     * This method tells you if it is a leap year.
+     * @return Returns true if it is a leap year and false if it isn't a leap year.
+     */
     public boolean leapYear(){
         if(year % 4 == 0){
             if(year % 100 == 0){
@@ -125,17 +145,30 @@ public class Date implements Comparable<Date> {
         this.day = day;
     }
 
+    /**]
+     * This overrides the toString method for the date.
+     * @return Returns a string of the date.
+     */
     @Override
     public String toString(){
-        // Return whatever string needed for this method.
         return Integer.toString(month) + '/' + Integer.toString(day) + '/' + Integer.toString(year);
     }
 
+    /**
+     * This overrides the equals method for the date
+     * @param date This is passed in to see if it equals the date.
+     * @return Returns true if the dates are equal and false if they aren't.
+     */
     @Override //NEED TO FINISH THIS
-    public boolean equals(Object obj){
+    public boolean equals(Object date){
         return true;
     }
 
+    /**
+     * This overrides the compareTo method for the date.
+     * @param date the object to be compared.
+     * @return Returns 0 if they are the same and -1 if they are not the same.
+     */
     @Override // NEED TO FINISH THIS
     public int compareTo(Date date){
         return -1;
